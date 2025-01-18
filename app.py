@@ -2,7 +2,8 @@ import streamlit as st
 from utils import apply_styles
 from multi_agent import multi_ai_agent, as_stream
 
-st.title("Phidata multi ai agents: GROQ llm")
+st.title("Phidata multi ai agents")
+st.markdown("This is a multi-agent system using GROQ model that can perform various tasks such as search web for info, aggregate finance/shares data, generate python code, search information from wikipedia, fetch metadata/caption from youtube video link.")
 
 if st.button("💬 New Chat"):
   st.session_state.messages = []

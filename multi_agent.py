@@ -5,11 +5,10 @@ from phi.tools.yfinance import YFinanceTools
 from phi.tools.duckduckgo import DuckDuckGo
 from phi.tools.python import PythonTools
 from phi.tools.wikipedia import WikipediaTools
+from phi.tools.youtube_tools import YouTubeTools
 from phi.run.response import RunEvent, RunResponse
-from dotenv import load_dotenv
 import streamlit as st
 
-load_dotenv()
 
 os.environ['GRQ_API_KEY'] = st.secrets.get('GROQ_API_KEY')
 
@@ -46,9 +45,17 @@ wikipedia_agent = Agent(tools=[WikipediaTools()],
                         model=Groq(id='llama-3.1-70b-versatile'),
                         markdown=True)
 
+youtube_agent = Agent(
+    tools=[YouTubeTools()],
+    model=Groq(id="llama-3.1-70b-versatile"),
+    role="Get captions and metadata of a YouTube video and answer questions",
+    show_tool_calls=True,
+    description="You are a YouTube agent. Obtain the captions of a YouTube video and answer questions."
+)
+
 
 multi_ai_agent = Agent(
-    team=[web_search_agent, financial_agent, python_agent, wikipedia_agent],
+    team=[web_search_agent, financial_agent, python_agent, wikipedia_agent, youtube_agent],
     model=Groq(id="llama-3.1-70b-versatile"),
     instructions=['Always include sources and references in your search results.', 'Use tables to display the data'],
     show_tool_calls=True,

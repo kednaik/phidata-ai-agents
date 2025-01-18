@@ -59,7 +59,8 @@ multi_ai_agent = Agent(
     model=Groq(id="llama-3.1-70b-versatile"),
     instructions=['Always include sources and references in your search results.', 'Use tables to display the data'],
     show_tool_calls=True,
-    markdown=True
+    markdown=True,
+    add_chat_history_to_messages=True
 )
 
 # multi_ai_agent.print_response("Search information for NVDA stock", stream=True)

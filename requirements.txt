@@ -1,0 +1,8 @@
+phidata
+yfinance
+packaging
+duckduckgo-search
+groq
+wikipedia
+
+streamlit
